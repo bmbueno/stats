@@ -2,8 +2,7 @@ import axios from 'axios';
 import Player from './Player'
 
 class User {
-    constructor(name) {
-        this.name = name
+    constructor() {
         const parametros = this.#getHashParams();
         this.token = parametros.access_token;
         this.api = this.#generateApi()

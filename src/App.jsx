@@ -1,16 +1,19 @@
 import React from 'react';
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import User from './utils/class/User'
+import Home from "./pages/Home";
+import Login from "./pages/Login";
 
-const getRefServer = () => { return process.env.REACT_APP_AUTHENTICATION_SERVER }
+const user = new User()
 
 const App = () => {
-    const user = new User()
     return (
-        <div className="App">
-            <button> <a target="_blank" href={getRefServer()} >Login</a> </button>
-            <button onClick={user.currentlyPlaying}>Buscar top tracks da Lorde</button>
-            <button onClick={user.nextMusic}>Next</button>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route element = { <Home user={user} /> }  path="/" exact />
+                <Route element = { <Login /> }  path="/login" />
+            </Routes>
+       </BrowserRouter>
     )
 }
 
