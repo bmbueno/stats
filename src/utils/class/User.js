@@ -38,8 +38,9 @@ class User {
         }
         return hashParams;
     }
-    nextMusic = () => {
-        this.player.next()
+    
+    control = (command) => {
+        this.player[command]()
     }
     currentlyPlaying = () => {
         this.player.getCurrentMedia()

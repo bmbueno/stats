@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import User from './utils/class/User'
 import Home from "./pages/Home";
@@ -7,6 +7,8 @@ import Login from "./pages/Login";
 
 const App = () => {
     const user = new User()
+
+    const Context = createContext(0);
 
     return (
         <BrowserRouter>
