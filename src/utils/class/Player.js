@@ -1,9 +1,5 @@
 class Player {
     constructor(api) {
-        //this.id = id
-        //this.name = name
-        //this.artist = artist
-        //this.album = album
         this.api = api
     }
     getCurrentMedia = () => {

@@ -3,10 +3,21 @@ import Player from './Player'
 
 class User {
     constructor() {
-        const parametros = this.#getHashParams();
-        this.token = parametros.access_token;
+        this.token = this.#getToken()
         this.api = this.#generateApi()
         this.player = new Player(this.api)
+        this.logged = false
+    }
+    #getToken = () => {
+        const parametros = this.#getHashParams();
+
+        if (!localStorage.getItem('token')) {
+            localStorage.setItem('token', parametros.access_token)
+        }
+
+        this.logged = true
+
+        return localStorage.getItem('token')
     }
     #generateApi = () => {
         const api = axios.create({

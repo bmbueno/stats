@@ -4,13 +4,14 @@ import User from './utils/class/User'
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 
-const user = new User()
 
 const App = () => {
+    const user = new User()
+
     return (
         <BrowserRouter>
             <Routes>
-                <Route element = { <Home user={user} /> }  path="/" exact />
+                <Route element = { <Home user={user}  data={user.data} /> }  path="/" exact />
                 <Route element = { <Login /> }  path="/login" />
             </Routes>
        </BrowserRouter>
