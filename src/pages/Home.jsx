@@ -29,8 +29,6 @@ const Home = (props) => {
 
     }, [])
 
-    
-
     return (
         <Background>
             <Login>
@@ -39,6 +37,18 @@ const Home = (props) => {
             <ContentMusic>
                 <Title>{media.name ? media.name : waitTrack}</Title>
                 <Artists>{media.artists ? media.artists : waitTrack}</Artists>
+                { media.characteristics ? <>
+                    <Characteristics> popularity: {media.characteristics['popularity']} </Characteristics>
+                    <Characteristics> acousticness: {media.characteristics['acousticness']} </Characteristics>
+                    <Characteristics> danceability:  {media.characteristics['danceability']} </Characteristics>
+                    <Characteristics> energy:  {media.characteristics['energy']} </Characteristics>
+                    <Characteristics> liveness:  {media.characteristics['liveness']} </Characteristics>
+                    <Characteristics> loudness:  {media.characteristics['loudness']} </Characteristics>
+                    <Characteristics> speechiness:  {media.characteristics['speechiness']} </Characteristics>
+                    <Characteristics> valence:  {media.characteristics['valence']} </Characteristics>
+                 </>
+                 : <></>
+                }
             </ContentMusic>
             <Player user={user} />
         </Background>
@@ -51,6 +61,11 @@ const Title = styled.h1`
 `;
 
 const Artists = styled.h2`
+    color: white;
+    font-size: 2vh;
+`;
+
+const Characteristics  = styled.h3`
     color: white;
     font-size: 2vh;
 `;

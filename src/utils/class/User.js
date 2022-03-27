@@ -43,11 +43,21 @@ class User {
         let nameArtists = basicInfo.artists.map((artist) => {
             return artist.name
         })
+
         return {
             name: basicInfo.name,
             artists: nameArtists.join(', '),
             album: { name: basicInfo.album.name, image: basicInfo.album.images[0] },
-            acousticness: adicionalInfo.acousticness
+            characteristics: {
+                popularity: basicInfo.popularity,
+                acousticness: adicionalInfo.acousticness,
+                danceability: adicionalInfo.danceability,
+                energy: adicionalInfo.energy,
+                liveness: adicionalInfo.liveness,
+                loudness: adicionalInfo.loudness,
+                speechiness: adicionalInfo.speechiness,
+                valence: adicionalInfo.valence
+            }
         }
     }
     control = (command) => {
