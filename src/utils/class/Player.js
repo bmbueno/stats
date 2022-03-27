@@ -3,10 +3,22 @@ class Player {
         this.api = api
         this.reproducing = false
     }
-    getCurrentMedia = () => {
-        this.api
+    getCurrentMedia = async () => {
+        return this.api
             .get("/v1/me/player/currently-playing")
-            .then(response => {console.log(response.data.item.name)})
+            .then(response => {
+                return response.data.item
+            })
+            .catch((err) => {
+                console.error("ops! ocorreu um erro" + err);
+            });
+    }
+    getInfoTrack = async (id) => {
+        return this.api
+            .get("/v1/audio-features/" + id)
+            .then(response => {
+                return response
+            })
             .catch((err) => {
                 console.error("ops! ocorreu um erro" + err);
             });

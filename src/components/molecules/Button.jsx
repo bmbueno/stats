@@ -7,15 +7,15 @@ const Button = (props) => {
 }
 
 const ButtonStyled = styled.button`
-    height: fit-content;
+    display: flex;
     min-width: 20px;
     min-height: 20px;
     padding: 10px 20px;
     background-color: orange;
     border: 0px solid;
-    border-radius: 20px;
+    border-radius: 100px;
     color: white;
-    font: bold 16px Lato;
+    font: bold 18px Lato;
 `
 
 export default Button

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 import Button from '../molecules/Button'
+import { BiSkipNext, BiSkipPrevious } from 'react-icons/bi';
 
 const Player = (props) => {
     const user = props.user
@@ -13,9 +14,10 @@ const Player = (props) => {
     
     return (
         <Div>
-            <Button onClick={() => user.control('previous')}>Previous</Button>
-            <Button onClick={playPause}>{reproducing ? 'Pause' : 'Play'}</Button>
-            <Button onClick={() => user.control('next')}>Next</Button>
+            <Button onClick={() => user.control('previous')}><BiSkipPrevious size={30} /></Button>
+            <div style={{width: '10px'}}></div>
+            {/* <Button onClick={playPause}>{reproducing ? 'Pause' : 'Play'}</Button> */}
+            <Button onClick={() => user.control('next')}><BiSkipNext size={30} /></Button>
         </Div>
     )
 }

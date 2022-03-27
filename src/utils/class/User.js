@@ -17,7 +17,7 @@ class User {
 
         this.logged = true
 
-        return localStorage.getItem('token')
+        return parametros.access_token
     }
     #generateApi = () => {
         const api = axios.create({
@@ -38,12 +38,30 @@ class User {
         }
         return hashParams;
     }
-    
+
+    #organizeTrackInfo(basicInfo, adicionalInfo) {
+        let nameArtists = basicInfo.artists.map((artist) => {
+            return artist.name
+        })
+        return {
+            name: basicInfo.name,
+            artists: nameArtists.join(', '),
+            album: { name: basicInfo.album.name, image: basicInfo.album.images[0] },
+            acousticness: adicionalInfo.acousticness
+        }
+    }
     control = (command) => {
         this.player[command]()
     }
-    currentlyPlaying = () => {
-        this.player.getCurrentMedia()
+    currentlyPlaying = async () => {
+        return this.player.getCurrentMedia().then(media => {
+            if (media)
+                return this.player.getInfoTrack(media.id).then(response => {
+                    return this.#organizeTrackInfo(media, response.data)
+                })
+            else
+                return {}
+        })
     }
 }
 
