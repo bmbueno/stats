@@ -89,6 +89,7 @@ const ContentMusic = styled.div`
     margin: auto;
     width: fit-content;
     padding: 80px 30px;
+    max-width: 800px;
 `;
 
 const Background  = styled.div`
@@ -97,6 +98,7 @@ const Background  = styled.div`
     align-items: end;
     height: 100%;
     background-color: black;
+    min-height: 100vh;
 `;
 
 const Login = styled.div`
