@@ -53,6 +53,7 @@ class User {
                 acousticness: adicionalInfo.acousticness,
                 danceability: adicionalInfo.danceability,
                 energy: adicionalInfo.energy,
+                instrumentalness: adicionalInfo.instrumentalness,
                 liveness: adicionalInfo.liveness,
                 loudness: adicionalInfo.loudness,
                 speechiness: adicionalInfo.speechiness,
