@@ -23,7 +23,7 @@ const Player = (props) => {
 }
 
 const Div = styled.div`
-    position: absolute;
+    position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
