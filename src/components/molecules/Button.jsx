@@ -11,7 +11,7 @@ const ButtonStyled = styled.button`
     min-width: 20px;
     min-height: 20px;
     padding: 10px 20px;
-    background-color: orange;
+    background-color: #1DB954;
     border: 0px solid;
     border-radius: 100px;
     color: white;

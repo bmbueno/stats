@@ -30,7 +30,7 @@ const Div = styled.div`
     bottom: 0px;
     width: 100%;
     height: 75px;
-    background-color: black;
+    background-color: #191414;
 `
 
 export default Player

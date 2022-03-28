@@ -35,6 +35,7 @@ const Home = (props) => {
                 <Button onClick={() => {window.location.href = getRefServer()}} >{identify}</Button>
             </Login>
             <ContentMusic>
+                { (media.album && window.innerWidth < 500) ? <img width='100%' src={media.album.image.url} ></img> : <></> }
                 <Title>{media.name ? media.name : waitTrack}</Title>
                 <Artists>{media.artists ? media.artists : waitTrack}</Artists>
                 { media.characteristics ? <>
@@ -70,12 +71,12 @@ const Home = (props) => {
 
 const Title = styled.h1`
     color: white;
-    font-size: 3vh;
+    font-size: 25px;
 `;
 
 const Artists = styled.h2`
-    color: white;
-    font-size: 2vh;
+    color: #1DB954;
+    font-size: 22px;
 `;
 
 const Characteristics  = styled.h3`
@@ -110,7 +111,7 @@ const Description = styled.p`
     color: white;
     font-size: 16px;
     padding-bottom: 20px;
-    border-bottom: 2px solid orange;
+    border-bottom: 2px solid #1DB954;
 `;
 
 export default Home
