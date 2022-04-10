@@ -64,7 +64,7 @@ const Home = (props) => {
                  : <></>
                 }
             </ContentMusic>
-            <Player user={user} />
+            {/* <Player user={user} /> */}
         </Background>
     )
 }
