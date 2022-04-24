@@ -50,26 +50,37 @@ class User {
     }
 
     #organizeTrackInfo(basicInfo, adicionalInfo) {
-        let nameArtists = basicInfo.artists.map((artist) => {
-            return artist.name
-        })
+        let artistsIds = basicInfo.artists.map((artist) => {
+            return artist.id
+        }).join(',')
 
-        return {
-            name: basicInfo.name,
-            artists: nameArtists.join(', '),
-            album: { name: basicInfo.album.name, image: basicInfo.album.images[0] },
-            characteristics: {
-                popularity: basicInfo.popularity,
-                acousticness: adicionalInfo.acousticness,
-                danceability: adicionalInfo.danceability,
-                energy: adicionalInfo.energy,
-                instrumentalness: adicionalInfo.instrumentalness,
-                liveness: adicionalInfo.liveness,
-                loudness: adicionalInfo.loudness,
-                speechiness: adicionalInfo.speechiness,
-                valence: adicionalInfo.valence
+        return this.player.getGenresArtists(artistsIds).then(data => {
+            let artistsGenres = data.artists.map(artist => {
+                return { name: artist.name, genres: artist.genres }
+            })
+            
+            let nameArtists = basicInfo.artists.map((artist) => {
+                return artist.name
+            })
+            
+            return {
+                name: basicInfo.name,
+                artists: nameArtists.join(', '),
+                album: { name: basicInfo.album.name, image: basicInfo.album.images[0] },
+                artistsGenres: artistsGenres,
+                characteristics: {
+                    popularity: basicInfo.popularity,
+                    acousticness: adicionalInfo.acousticness,
+                    danceability: adicionalInfo.danceability,
+                    energy: adicionalInfo.energy,
+                    instrumentalness: adicionalInfo.instrumentalness,
+                    liveness: adicionalInfo.liveness,
+                    loudness: adicionalInfo.loudness,
+                    speechiness: adicionalInfo.speechiness,
+                    valence: adicionalInfo.valence
+                }
             }
-        }
+        })
     }
     control = (command) => {
         this.player[command]()

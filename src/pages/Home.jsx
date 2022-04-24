@@ -3,7 +3,8 @@ import { useState } from "react"
 import styled from 'styled-components'
 import Button from "../components/molecules/Button"
 import Wiki from "../utils/class/Wiki"
-import MediaCharacteristics from "../components/organisms/MusicCharacteristics"
+import Artist from "../components/molecules/Artist"
+// import MediaCharacteristics from "../components/organisms/MusicCharacteristics"
 
 const getRefServer = () => { return process.env.REACT_APP_AUTHENTICATION_SERVER }
 
@@ -54,6 +55,15 @@ const Home = (props) => {
                 <Title>{media.name ? media.name : waitTrack}</Title>
                 <Artists>{media.artists ? media.artists : waitTrack}</Artists>
                 {/* <MediaCharacteristics characteristics={media.characteristics} /> */}
+                { media.artistsGenres ? 
+                    <>
+                        <hr></hr>
+                        { media.artistsGenres.map((artist, id) => {
+                            return <Artist artist={artist} key={id} />
+                        }) }
+                    </>
+                    : <></> 
+                }
             </ContentMusic>
             {/* <Player user={user} /> */}
         </Background>

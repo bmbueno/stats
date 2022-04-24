@@ -13,6 +13,20 @@ class Player {
                 console.error("ops! ocorreu um erro" + err);
             });
     }
+    getGenresArtists = async (ids) => {
+        return this.api
+            .get("/v1/artists/", {
+                params: {
+                    ids: ids
+                }
+            })
+            .then(response => {
+                return response.data
+            })
+            .catch((err) => {
+                console.error("ops! ocorreu um erro" + err);
+            });
+    }
     getInfoTrack = async (id) => {
         return this.api
             .get("/v1/audio-features/" + id)
