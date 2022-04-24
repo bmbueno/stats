@@ -8,6 +8,16 @@ class User {
         this.player = new Player(this.api)
         this.logged = false
     }
+    getInfoUser = async () => {
+        return this.api
+            .get("/v1/me/")
+            .then(response => {
+                return response.data
+            })
+            .catch((err) => {
+                console.error("ops! ocorreu um erro" + err);
+            });
+    }
     #getToken = () => {
         const parametros = this.#getHashParams();
 
@@ -29,11 +39,11 @@ class User {
         return api
     }
     #getHashParams() {
-        var hashParams = {}; 
-        
+        var hashParams = {};
+
         var e, r = /([^&;=]+)=?([^&;]*)/g,
-        q = window.location.hash.substring(1);
-        while ( e = r.exec(q)) {
+            q = window.location.hash.substring(1);
+        while (e = r.exec(q)) {
             hashParams[e[1]] = decodeURIComponent(e[2]);
         }
         return hashParams;

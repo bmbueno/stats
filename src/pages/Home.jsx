@@ -1,13 +1,14 @@
 import { useEffect } from "react"
 import { useState } from "react"
 import styled from 'styled-components'
-import Player  from "../components/organisms/Player"
 import Button from "../components/molecules/Button"
+import Wiki from "../utils/class/Wiki"
 
 const getRefServer = () => { return process.env.REACT_APP_AUTHENTICATION_SERVER }
 
 const Home = (props) => {
     const user = props.user
+    const wiki = new Wiki()
     const [identify, setIdentify] = useState('Login')
     const [media, setMedia] = useState({})
     const waitTrack= 'Aguardando música.'
@@ -26,8 +27,21 @@ const Home = (props) => {
             } )
 
         }, 5000)
-
+        login()
     }, [])
+
+    const login = async () => {
+        try {
+            const infoUser = await user.getInfoUser();
+            setIdentify(infoUser.display_name);
+        } catch (e) {
+            setIdentify('Login')
+        }
+    }
+
+    const handleClick = () => {
+        wiki.searchGenre('pop')
+    }
 
     return (
         <Background>
