@@ -55,9 +55,23 @@ const Home = (props) => {
                 <Title>{media.name ? media.name : waitTrack}</Title>
                 <Artists>{media.artists ? media.artists : waitTrack}</Artists>
                 {/* <MediaCharacteristics characteristics={media.characteristics} /> */}
+                { media.genres ? 
+                    <>
+                        <hr></hr>
+                        <h3 style={{color: '#1DB954'}}>Gêneros da música</h3>
+                        <Genres>
+                            { media.genres.map((gender, id) => {
+
+                                return <Gender key={id}> {gender.name} </Gender>
+                            }) }
+                        </Genres>
+                    </>
+                    : <></> 
+                }
                 { media.artistsGenres ? 
                     <>
                         <hr></hr>
+                        <h3 style={{color: '#1DB954'}}>Gêneros por artista</h3>
                         { media.artistsGenres.map((artist, id) => {
                             return <Artist artist={artist} key={id} />
                         }) }
@@ -73,6 +87,22 @@ const Home = (props) => {
 const Title = styled.h1`
     color: white;
     font-size: 25px;
+`;
+
+const Gender = styled.div`
+    color: white;
+    font-size: 20px;
+
+    @media(max-width: 800px) {
+        margin-left: 20px;
+    }
+`;
+
+const Genres = styled.div`
+    @media(min-width: 800px) {
+        display: flex;
+        justify-content: space-between;
+    }
 `;
 
 const Artists = styled.h2`

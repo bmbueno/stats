@@ -48,37 +48,38 @@ class User {
         }
         return hashParams;
     }
-
     #organizeTrackInfo(basicInfo, adicionalInfo) {
         let artistsNames = basicInfo.artists.map((artist) => {
             return artist.name
         })
-
         return this.player.getAllArtists(artistsNames).then(data => {
             let artistsGenres = data.map(item => {
                 return { name: item.artist.name, genres: item.artist.tags.tag }
             })
-            let nameArtists = basicInfo.artists.map((artist) => {
-                return artist.name
-            })
-            
-            return {
-                name: basicInfo.name,
-                artists: nameArtists.join(', '),
-                album: { name: basicInfo.album.name, image: basicInfo.album.images[0] },
-                artistsGenres: artistsGenres,
-                characteristics: {
-                    popularity: basicInfo.popularity,
-                    acousticness: adicionalInfo.acousticness,
-                    danceability: adicionalInfo.danceability,
-                    energy: adicionalInfo.energy,
-                    instrumentalness: adicionalInfo.instrumentalness,
-                    liveness: adicionalInfo.liveness,
-                    loudness: adicionalInfo.loudness,
-                    speechiness: adicionalInfo.speechiness,
-                    valence: adicionalInfo.valence
+        
+            return this.player.getGenres(basicInfo.name, basicInfo.artists[0]).then(data => {
+                let nameArtists = basicInfo.artists.map((artist) => {
+                    return artist.name
+                })
+                return {
+                    name: basicInfo.name,
+                    artists: nameArtists.join(', '),
+                    album: { name: basicInfo.album.name, image: basicInfo.album.images[0] },
+                    artistsGenres: artistsGenres,
+                    genres: data,
+                    characteristics: {
+                        popularity: basicInfo.popularity,
+                        acousticness: adicionalInfo.acousticness,
+                        danceability: adicionalInfo.danceability,
+                        energy: adicionalInfo.energy,
+                        instrumentalness: adicionalInfo.instrumentalness,
+                        liveness: adicionalInfo.liveness,
+                        loudness: adicionalInfo.loudness,
+                        speechiness: adicionalInfo.speechiness,
+                        valence: adicionalInfo.valence
+                    }
                 }
-            }
+            })
         })
     }
     control = (command) => {
