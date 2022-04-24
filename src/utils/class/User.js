@@ -50,15 +50,14 @@ class User {
     }
 
     #organizeTrackInfo(basicInfo, adicionalInfo) {
-        let artistsIds = basicInfo.artists.map((artist) => {
-            return artist.id
-        }).join(',')
+        let artistsNames = basicInfo.artists.map((artist) => {
+            return artist.name
+        })
 
-        return this.player.getGenresArtists(artistsIds).then(data => {
-            let artistsGenres = data.artists.map(artist => {
-                return { name: artist.name, genres: artist.genres }
+        return this.player.getAllArtists(artistsNames).then(data => {
+            let artistsGenres = data.map(item => {
+                return { name: item.artist.name, genres: item.artist.tags.tag }
             })
-            
             let nameArtists = basicInfo.artists.map((artist) => {
                 return artist.name
             })
