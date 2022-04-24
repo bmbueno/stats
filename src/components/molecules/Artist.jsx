@@ -6,7 +6,7 @@ const Artist = (props) => {
             <Name>{props.artist.name}</Name>
             <ul>
                 { props.artist.genres.map(gender => {
-                    return <Gender key={gender}>{gender}</Gender>
+                    return <Gender key={gender.name}>{gender.name}</Gender>
                 })}
             </ul>
         </>
