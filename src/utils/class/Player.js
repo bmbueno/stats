@@ -1,12 +1,8 @@
-import axios from "axios";
-
-const getAPIKeyLastFM = () => { return process.env.REACT_APP_API_KEY_LASTFM }
 class Player {
     constructor(api) {
         this.api = api
         this.reproducing = false
     }
-
     getCurrentMedia = async () => {
         return this.api
             .get("/v1/me/player/currently-playing")
@@ -17,23 +13,19 @@ class Player {
                 console.error("ops! ocorreu um erro" + err);
             });
     }
-    getAllArtists = async (names) => {
-        const api = axios.create({
-            baseURL: "http://ws.audioscrobbler.com/",
-        });
-
-        let genres = await names.map(async artist => {
-            return await api
-                .get("/2.0/?method=artist.getinfo&artist="+ artist +"&api_key=" + getAPIKeyLastFM() + "&format=json")
-                .then(response => {
-                    return response.data
-                })
-                .catch((err) => {
-                    console.error("ops! ocorreu um erro" + err);
-                });
-        })
-
-        return await Promise.all(genres)
+    getGenresArtists = async (ids) => {
+        return this.api
+            .get("/v1/artists/", {
+                params: {
+                    ids: ids
+                }
+            })
+            .then(response => {
+                return response.data
+            })
+            .catch((err) => {
+                console.error("ops! ocorreu um erro" + err);
+            });
     }
     getInfoTrack = async (id) => {
         return this.api
