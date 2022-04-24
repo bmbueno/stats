@@ -55,7 +55,7 @@ const Home = (props) => {
                 <Title>{media.name ? media.name : waitTrack}</Title>
                 <Artists>{media.artists ? media.artists : waitTrack}</Artists>
                 {/* <MediaCharacteristics characteristics={media.characteristics} /> */}
-                { (media.genres?.ength > 1) ? 
+                { (media.genres?.length > 1) ? 
                     <>
                         <hr></hr>
                         <h3 style={{color: '#1DB954'}}>Gêneros da música</h3>
