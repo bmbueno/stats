@@ -19,7 +19,7 @@ class Player {
     }
     getAllArtists = async (names) => {
         const api = axios.create({
-            baseURL: "http://ws.audioscrobbler.com/",
+            baseURL: "https://ws.audioscrobbler.com/",
         });
 
         let genres = await names.map(async artist => {
