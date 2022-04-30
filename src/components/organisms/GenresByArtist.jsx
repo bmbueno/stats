@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import Artist from "../molecules/Artist"
+import ArtistWithGenres from "../molecules/ArtistWithGenres"
 
 const GenresByArtist = (props) => {
 
@@ -9,7 +9,7 @@ const GenresByArtist = (props) => {
                 <>
                     <h3 style={{color: '#1DB954'}}>Gêneros por artista</h3>
                     { props.list.map((artist, id) => {
-                        return <Artist artist={artist} key={id} />
+                        return <ArtistWithGenres artist={artist} key={id} />
                     }) }
                 </>
                 : <></> 
