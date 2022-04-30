@@ -67,7 +67,9 @@ const Genres = (props) => {
                 <>
                     <List>
                         { props.list.map((genre, i) => {
-                            return <Genre onClick={handleClick} selected={selected} key={genre.name} name={genre.name}  />
+                             if (genre.description)
+                                return <Genre onClick={handleClick} selected={selected} key={genre.name} name={genre.name}  />
+                             return ''
                         })}
                     </List>
                     <Description>
