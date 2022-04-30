@@ -89,15 +89,17 @@ const Title = styled.h1`
 
 const Album = styled.div`
     @media(min-width: 800px) {
+        max-width: 30vw;
         margin: 0px 30px;
-        width: 50%;
+        width: 50vw;
     }
 `;
 
 const MusicInfo = styled.div`
     @media(min-width: 800px) {
-        width: 50%;
+        max-width: 40vw;
         margin: 0px 30px;
+        width: 50vw;
     }
 `;
 
