@@ -21,8 +21,7 @@ const Genres = (props) => {
     useEffect(() => {
         const clicked = listDescription.filter((genre) => { return genre.name == selected })
 
-        console.log(clicked)
-        setDescription(clicked.description)
+        setDescription(clicked[0] ? clicked[0].description : '')
     }, [selected])
     
     const handleClick = (e) => {

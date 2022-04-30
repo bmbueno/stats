@@ -7,11 +7,8 @@ const GenresByArtist = (props) => {
     const [haveGenre, setHaveGenre] = useState(false)
 
     useEffect(() => {
-        console.log(props.list)
-
         props.list.forEach(artist => {
             if (artist.genres.length > 0) {
-                console.log('djshkd')
                 setHaveGenre(true)
             }
         })
