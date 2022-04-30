@@ -3,7 +3,9 @@ import { useState } from "react"
 import styled from 'styled-components'
 import Button from "../components/molecules/Button"
 import Wiki from "../utils/class/Wiki"
-import Artist from "../components/molecules/Artist"
+import Player from "../components/organisms/Player"
+import GenresMusic from "../components/organisms/GenresMusic"
+import GenresByArtist from "../components/organisms/GenresByArtist"
 // import MediaCharacteristics from "../components/organisms/MusicCharacteristics"
 
 const getRefServer = () => { return process.env.REACT_APP_AUTHENTICATION_SERVER }
@@ -51,57 +53,52 @@ const Home = (props) => {
                 <Button onClick={() => {window.location.href = getRefServer()}} >{identify}</Button>
             </Login>
             <ContentMusic>
-                { ( media.album ) ? <img width='100%' src={media.album.image.url} ></img> : <></> }
-                <Title>{media.name ? media.name : waitTrack}</Title>
-                <Artists>{media.artists ? media.artists : waitTrack}</Artists>
-                {/* <MediaCharacteristics characteristics={media.characteristics} /> */}
-                { (media.genres?.length > 1) ? 
+                {  media.name ? 
                     <>
-                        <hr></hr>
-                        <h3 style={{color: '#1DB954'}}>Gêneros da música</h3>
-                        <Genres>
-                            { media.genres.map((gender, id) => {
-
-                                return <Gender key={id}> {gender.name} </Gender>
-                            }) }
-                        </Genres>
+                        <Album>
+                            { ( media.album ) ? <img width="100%" src={media.album.image.url} ></img> : <></> }
+                        </Album>
+                        <MusicInfo>
+                            <Title>{media.name ? media.name : waitTrack}</Title>
+                            <Artists>{media.artists ? media.artists : waitTrack}</Artists>
+                            {/* <MediaCharacteristics characteristics={media.characteristics} /> */}
+                            <Divider />
+                            <GenresMusic list={media.genres} />
+                            
+                            <GenresByArtist list={media.artistsGenres} />
+                        </MusicInfo>
                     </>
-                    : <></> 
-                }
-                { media.artistsGenres ? 
+                    :
                     <>
-                        <hr></hr>
-                        <h3 style={{color: '#1DB954'}}>Gêneros por artista</h3>
-                        { media.artistsGenres.map((artist, id) => {
-                            return <Artist artist={artist} key={id} />
-                        }) }
-                    </>
-                    : <></> 
+                        <Title>{waitTrack}</Title>
+                    </>    
                 }
             </ContentMusic>
-            {/* <Player user={user} /> */}
+            <Player user={user} />
         </Background>
     )
 }
+
+const Divider = styled.hr`
+    width: 100%;
+`;
 
 const Title = styled.h1`
     color: white;
     font-size: 25px;
 `;
 
-const Gender = styled.div`
-    color: white;
-    font-size: 20px;
-
-    @media(max-width: 800px) {
-        margin-left: 20px;
+const Album = styled.div`
+    @media(min-width: 800px) {
+        margin: 0px 30px;
+        width: 50%;
     }
 `;
 
-const Genres = styled.div`
+const MusicInfo = styled.div`
     @media(min-width: 800px) {
-        display: flex;
-        justify-content: space-between;
+        width: 50%;
+        margin: 0px 30px;
     }
 `;
 
@@ -114,9 +111,16 @@ const ContentMusic = styled.div`
     color: white
     font-size: 2vw;
     margin: auto;
-    width: fit-content;
     padding: 80px 30px;
-    max-width: 800px;
+    width: fit-content;
+    height: 100%;
+
+    @media(min-width: 800px) {
+        display: flex;
+        justify-content: space-between;
+        max-width: 80%;
+ 
+    }
 `;
 
 const Background  = styled.div`

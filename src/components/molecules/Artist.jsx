@@ -3,12 +3,17 @@ import styled from "styled-components";
 const Artist = (props) => {
     return (
         <>
-            <Name> - {props.artist.name}</Name>
-            <Genres>
-                { props.artist.genres.map(gender => {
-                    return <Gender key={gender.name}>{gender.name}</Gender>
-                })}
-            </Genres>
+            { props.artist.genres.length > 0 ? 
+                <>
+                    <Name> - {props.artist.name}</Name>
+                        <Genres>
+                            { props.artist.genres.map(gender => {
+                                return <Gender key={gender.name}>{gender.name}</Gender>
+                            })}
+                        </Genres>
+                </>
+                : <></> 
+            }
         </>
     )
 }
