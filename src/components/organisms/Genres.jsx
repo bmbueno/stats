@@ -8,8 +8,9 @@ const getAPIKeyLastFM = () => { return process.env.REACT_APP_API_KEY_LASTFM }
 const Genres = (props) => {
     const [selected, setSelected] = useState('')
     const [description, setDescription] = useState("")
+    let aux = {}
     useEffect(() => {
-        
+        setDescription("")
     }, [props.list])
 
     const handleClick = (e) => {
@@ -47,7 +48,6 @@ const Genres = (props) => {
                         { props.list.map((genre, i) => {
                             return <Genre onClick={handleClick} selected={selected} key={genre.name} name={genre.name}  />
                         })}
-                        {}
                     </List>
                     <Description>
                         {description}

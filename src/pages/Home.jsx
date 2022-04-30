@@ -22,10 +22,9 @@ const Home = (props) => {
         setInterval(() => {
             user.currentlyPlaying().then( media => {
                 if (media) {
-                    if (aux !== media) {
+                    if (aux.name !== media.name) {
                         setMedia(media)
                         aux = media
-                        //console.log(media)
                     }
                 } 
             } )
