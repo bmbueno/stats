@@ -29,6 +29,7 @@ class Player {
                 })
                 .catch((err) => {
                     console.error("ops! ocorreu um erro" + err);
+                    console.log("Nome música: " + name)
                 });
 
         return await genres

@@ -8,14 +8,35 @@ const getAPIKeyLastFM = () => { return process.env.REACT_APP_API_KEY_LASTFM }
 const Genres = (props) => {
     const [selected, setSelected] = useState('')
     const [description, setDescription] = useState("")
+    const [listDescription, setListDescription] = useState([])
     let aux = {}
-    useEffect(() => {
+    useEffect(async () => {
         setDescription("")
+
+        let descriptions = await getDescriptions()
+        setListDescription(descriptions)
+        
     }, [props.list])
 
+    useEffect(() => {
+        const clicked = listDescription.filter((genre) => { return genre.name == selected })
+
+        console.log(clicked)
+        setDescription(clicked.description)
+    }, [selected])
+    
     const handleClick = (e) => {
-       setSelected(e.target.text)
-       getTag(e.target.text)
+        setSelected(e.target.text)
+     }
+
+    const getDescriptions = async () => {
+        let list = await props.list.map(async genre => {
+            genre.description = await getTag(genre.name)
+            
+            return genre.description ? genre : {}
+        })
+
+        return await Promise.all(list) 
     }
 
     const getTag = async (tag) => {
@@ -23,7 +44,7 @@ const Genres = (props) => {
             baseURL: "https://ws.audioscrobbler.com/",
         });
 
-        await api
+        return await api
                 .get("/2.0/?method=tag.getinfo&tag="+ tag +"&api_key=" + getAPIKeyLastFM() + "&format=json&lang=pt")
                 .then(response => {
                     var element = document.createElement("div")
@@ -32,7 +53,8 @@ const Genres = (props) => {
                     if (text.trim() !== "") {
                         text = element.innerText.slice(0, text.lastIndexOf(".")) + "."
                     }
-                    setDescription(text.trim()) 
+                    //setDescription(text.trim()) 
+                    return text.trim()
                 })
                 .catch((err) => {
                     console.error("ops! ocorreu um erro" + err);
