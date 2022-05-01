@@ -18,7 +18,7 @@ const Genre = (props) => {
 }
 
 const Item = styled.li`
-    display: ruby;
+    display: block;
     padding: 10px 20px;
     border-radius: 10px 10px ${props => props.selected ? '0px 0px' : '10px 10px'};
     background-color: ${props => props.selected ? '#1DB954' : "black"};
@@ -26,6 +26,7 @@ const Item = styled.li`
     border-bottom: ${props => props.selected ? 'none' : "2px solid #1DB954"};
     width: auto;
     cursor: pointer;
+    white-space: nowrap;
 
     &:hover {
         background-color: #1DB954;
