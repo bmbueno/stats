@@ -18,7 +18,7 @@ const ArtistWithGenres = (props) => {
         <>
             { props.artist.genres.length > 0 ? 
                 <>
-                    <Name> - {props.artist.name} { bio ? <OpenBio onClick={handleClick} >Bio</OpenBio> : ''} </Name>
+                    <Name> - {props.artist.name} { bio.trim() ? <OpenBio onClick={handleClick} >Bio</OpenBio> : ''} </Name>
                     <Collapse open={bioOpen} >
                         <Bio> {bio} </Bio>
                     </Collapse>
@@ -38,14 +38,14 @@ const Name  = styled.h3`
 `;
 
 const Bio  = styled.p`
-    margin: 0px;
+    margin: 0px 0px 20px 0px;
     color: white;
     font-size: 18px;
 `;
 
 const OpenBio = styled.a`
     border-radius: 30%;
-    margin-left: 10px;
+    margin-left: 10px; 
     padding: 2px 5px;
     background-color: #1DB954;
     color: white;
@@ -56,5 +56,5 @@ const OpenBio = styled.a`
 const Collapse = styled.div`
     max-height: ${props => props.open ? "100%" : "0"};
     overflow: hidden;
-    transition: all 0.3s ease-out;
+    transition: all 0.7s ease-out;
 `;

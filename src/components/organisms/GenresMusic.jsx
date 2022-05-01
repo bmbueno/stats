@@ -9,7 +9,7 @@ const GenresMusic = (props) => {
                 <>
                     <h3 style={{color: '#1DB954'}}>Gêneros da música</h3>
                     <Genres list={props.list}/>
-                    <Divider /> 
+                    {/* <Divider />  */}
                 </>
                 : <></> 
             }

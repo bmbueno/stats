@@ -9,12 +9,13 @@ const Genres = (props) => {
     const [selected, setSelected] = useState('')
     const [description, setDescription] = useState("")
     const [listDescription, setListDescription] = useState([])
-    let aux = {}
+  
     useEffect(async () => {
         setDescription("")
 
         let descriptions = await getDescriptions()
         setListDescription(descriptions)
+        //setSelected(props.list[0].name)
         
     }, [props.list])
 
@@ -71,8 +72,8 @@ const Genres = (props) => {
                                 return <Genre onClick={handleClick} selected={selected} key={genre.name} name={genre.name}  />
                              return ''
                         })}
-                    </List>
-                    <Description>
+                    </List> 
+                    <Description open={description?.trim() || false}>
                         {description}
                     </Description>
                 </>
@@ -86,14 +87,23 @@ export default Genres
 
 
 const List = styled.ul`
+    margin: 0px ;
+    padding: 0px;
     @media(min-width: 800px) {
         display: flex;
-        justify-content: space-between;
+        justify-content: start;
     }
 `;
 
 const Description  = styled.div`
+    border-radius: 0px 10px 10px 10px;
+    padding: ${props => props.open ? '10px' : '0px'};
+    background-color: #1DB954;
+    border-top: none;
     color: white;
     font-size: 18px;
     list-style-type: none;
+    max-height: ${props => props.open ? "100%" : "0"};
+    overflow: hidden;
+    transition: all 0.7s ease-out;
 `;
