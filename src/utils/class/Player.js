@@ -41,7 +41,7 @@ class Player {
 
         let genres = await names.map(async artist => {
             return await api
-                .get("/2.0/?method=artist.getinfo&artist="+ artist +"&api_key=" + getAPIKeyLastFM() + "&format=json")
+                .get("/2.0/?method=artist.getinfo&artist="+ artist +"&api_key=" + getAPIKeyLastFM() + "&format=json&lang=pt")
                 .then(response => {
                     return response.data
                 })

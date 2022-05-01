@@ -12,7 +12,6 @@ const GenresByArtist = (props) => {
                 setHaveGenre(true)
             }
         })
-
     }, [props.list])
 
     return (
