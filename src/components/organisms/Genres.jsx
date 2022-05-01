@@ -26,7 +26,6 @@ const Genres = (props) => {
     }, [selected])
     
     const handleClick = (e) => {
-        console.log(e.target.text)
         setSelected(e.target.text)
      }
 
@@ -98,7 +97,7 @@ const List = styled.ul`
 
 const Description  = styled.div`
     border-radius: 0px 10px 10px 10px;
-    padding: ${props => props.open ? '20px' : '0px'};
+    padding: ${props => props.open ? '30px 20px 20px 20px' : '0px'};
     background-color: #1DB954;
     border-top: none;
     color: white;

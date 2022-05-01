@@ -69,9 +69,10 @@ const Home = (props) => {
                         </MusicInfo>
                     </>
                     :
-                    <>
+                    <Await>
                         <Title>{waitTrack}</Title>
-                    </>    
+                        <h3 style={{'color': '#1DB954'}} >Reproduza uma música em algum dispositivo conectado a sua conta Spotify.</h3>
+                    </Await>    
                 }
             </ContentMusic>
             <Player user={user} />
@@ -81,6 +82,12 @@ const Home = (props) => {
 
 const Divider = styled.hr`
     width: 100%;
+`;
+
+const Await = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
 const Title = styled.h1`
