@@ -18,21 +18,23 @@ class Player {
             });
     }
     getGenres = async (name, artist) => {
-        const api = axios.create({
-            baseURL: "https://ws.audioscrobbler.com/",
-        });
+        if (name && artist) {
+            const api = axios.create({
+                baseURL: "https://ws.audioscrobbler.com/",
+            });
 
-        let genres = await api
-                .get("/2.0/?method=track.getInfo&artist="+ artist.name +"&api_key=" + getAPIKeyLastFM() + "&track=" + name + "&format=json")
-                .then(response => {
-                    return response.data.track.toptags.tag
-                })
-                .catch((err) => {
-                    console.error("ops! ocorreu um erro" + err);
-                    console.log("Nome música: " + name)
-                });
+            let genres = await api
+                    .get("/2.0/?method=track.getInfo&artist="+ artist.name +"&api_key=" + getAPIKeyLastFM() + "&track=" + name + "&format=json")
+                    .then(response => {
+                        return response.data?.track?.toptags.tag
+                    })
+                    .catch((err) => {
+                        console.error("ops! ocorreu um erro" + err);
+                    });
 
-        return await genres
+            return await genres
+        }
+        return {}
     }
     getAllArtists = async (names) => {
         const api = axios.create({

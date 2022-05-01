@@ -7,9 +7,11 @@ const ArtistWithGenres = (props) => {
     const [ bio, setBio] = useState('')
     const [ bioOpen, setBioOpen ] = useState(false)
     useEffect(() => {
-        setBioOpen(false)
-        setBio(props.artist.bio.summary.split("<a")[0])
-    }, [props.artist.bio])
+        if (props.artist.bio) {
+            setBioOpen(false)
+            setBio(props.artist?.bio.summary.split("<a")[0])
+        }
+    }, [props.artist?.bio])
 
     const handleClick = () => {
         setBioOpen(!bioOpen)
@@ -17,13 +19,13 @@ const ArtistWithGenres = (props) => {
 
     return (
         <>
-            { props.artist.genres.length > 0 ? 
+            {  props.artist.genres && props.artist?.genres.length > 0 ? 
                 <>
                     <Name> - {props.artist.name} { bio.trim() ? <OpenBio onClick={handleClick} >bio</OpenBio> : ''} </Name>
                     <Collapse open={bioOpen} >
                         <Bio> {bio} </Bio>
                     </Collapse>
-                    <Genres list={props.artist.genres}  />
+                    <Genres list={props.artist?.genres}  />
                 </>
                 : <></> 
             }
@@ -41,7 +43,7 @@ const Name  = styled.h3`
 const Bio  = styled.p`
     margin: 0px 0px 20px 0px;
     color: white;
-    font-size: 18px;
+    font-size: 16px;
 `;
 
 const OpenBio = styled.a`

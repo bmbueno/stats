@@ -16,6 +16,7 @@ const ButtonStyled = styled.button`
     border-radius: 100px;
     color: white;
     font: bold 18px Lato;
+    height: fit-content;
 `
 
 export default Button

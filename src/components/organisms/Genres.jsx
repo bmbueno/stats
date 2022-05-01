@@ -98,13 +98,14 @@ const List = styled.ul`
 
 const Description  = styled.div`
     border-radius: 0px 10px 10px 10px;
-    padding: ${props => props.open ? '10px' : '0px'};
+    padding: ${props => props.open ? '20px' : '0px'};
     background-color: #1DB954;
     border-top: none;
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     list-style-type: none;
     max-height: ${props => props.open ? "100%" : "0"};
     overflow: hidden;
     transition: all 0.7s ease-out;
+    margin-top: ${props => props.open ? '-10px' : '0px'};
 `;

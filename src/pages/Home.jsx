@@ -13,7 +13,7 @@ const getRefServer = () => { return process.env.REACT_APP_AUTHENTICATION_SERVER 
 const Home = (props) => {
     const user = props.user
     const wiki = new Wiki()
-    const [identify, setIdentify] = useState('Login')
+    const [identify, setIdentify] = useState('')
     const [media, setMedia] = useState({})
     const waitTrack= 'Aguardando música.'
 
@@ -49,7 +49,8 @@ const Home = (props) => {
     return (
         <Background>
             <Login>
-                <Button onClick={() => {window.location.href = getRefServer()}} >{identify}</Button>
+                <Welcome>Bem-vindo, {identify} !</Welcome>
+                <Button onClick={() => {window.location.href = getRefServer()}} >{identify ? 'Sair' : 'Faça login'}</Button>
             </Login>
             <ContentMusic>
                 {  media.name ? 
@@ -87,6 +88,12 @@ const Title = styled.h1`
     font-size: 25px;
 `;
 
+const Welcome = styled.span`
+    color: white;
+    font-size: 20px;
+    margin-right: 20px;
+`;
+
 const Album = styled.div`
     @media(min-width: 800px) {
         max-width: 30vw;
@@ -97,6 +104,7 @@ const Album = styled.div`
 
 const MusicInfo = styled.div`
     @media(min-width: 800px) {
+        padding-bottom: 50px;
         max-width: 40vw;
         margin: 0px 30px;
         width: 50vw;
@@ -134,6 +142,8 @@ const Background  = styled.div`
 `;
 
 const Login = styled.div`
+    display: flex;
+    align-items: center;
     position: absolute;
     padding: 20px;
     `;

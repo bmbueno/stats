@@ -54,7 +54,12 @@ class User {
         })
         return this.player.getAllArtists(artistsNames).then(data => {
             let artistsGenres = data.map(item => {
-                return { name: item.artist.name, bio: item.artist.bio, genres: item.artist.tags.tag }
+                try {
+                    return { name: item?.artist?.name, bio: item?.artist?.bio, genres: item?.artist?.tags.tag }
+                } catch(e) {
+                    console.log(e)
+                    return {}
+                }
             })
         
             return this.player.getGenres(basicInfo.name, basicInfo.artists[0]).then(data => {
@@ -79,6 +84,9 @@ class User {
                         valence: adicionalInfo.valence
                     }
                 }
+            }).catch((e) => {
+                console.log(e)
+                return {}
             })
         })
     }
