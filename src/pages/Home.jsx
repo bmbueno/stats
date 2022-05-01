@@ -123,7 +123,7 @@ const Artists = styled.h2`
 const ContentMusic = styled.div`
     color: white;
     margin: auto;
-    padding: 120px 30px;
+    padding: 0px 30px 120px 30px;
     width: fit-content;
     height: 100%;
 
@@ -147,7 +147,6 @@ const Background  = styled.div`
 const Login = styled.div`
     display: flex;
     align-items: center;
-    position: absolute;
     padding: 20px;
     `;
 
