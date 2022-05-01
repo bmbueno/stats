@@ -18,7 +18,7 @@ const Genre = (props) => {
 }
 
 const Item = styled.li`
-    display: block;
+    display: ruby;
     padding: 10px 20px;
     border-radius: 10px 10px ${props => props.selected ? '0px 0px' : '10px 10px'};
     background-color: ${props => props.selected ? '#1DB954' : "black"};

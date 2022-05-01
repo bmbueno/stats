@@ -89,7 +89,11 @@ export default Genres
 const List = styled.ul`
     margin: 0px ;
     padding: 0px;
+    display: inline-flex;
+    overflow: scroll;
+    max-width: calc(100vw - 60px);
     @media(min-width: 800px) {
+        overflow: hidden;
         display: flex;
         justify-content: start;
     }

@@ -38,19 +38,15 @@ const Home = (props) => {
             const infoUser = await user.getInfoUser();
             setIdentify(infoUser.display_name);
         } catch (e) {
-            setIdentify('Login')
+            setIdentify('')
         }
-    }
-
-    const handleClick = () => {
-        wiki.searchGenre('pop')
     }
 
     return (
         <Background>
             <Login>
-                <Welcome>Bem-vindo, {identify} !</Welcome>
-                <Button onClick={() => {window.location.href = getRefServer()}} >{identify ? 'Sair' : 'Faça login'}</Button>
+                <Welcome logged={identify}>Bem-vindo, {identify} !</Welcome>
+                <Button onClick={() => {window.location.href = getRefServer()}} >{identify ? 'Sair' : 'Faça login aqui'}</Button>
             </Login>
             <ContentMusic>
                 {  media.name ? 
@@ -71,7 +67,7 @@ const Home = (props) => {
                     :
                     <Await>
                         <Title>{waitTrack}</Title>
-                        <h3 style={{'color': '#1DB954'}} >Reproduza uma música em algum dispositivo conectado a sua conta Spotify.</h3>
+                        <h3 style={{'color': '#1DB954'}} >Faça login e reproduza uma música em algum dispositivo conectado a sua conta Spotify.</h3>
                     </Await>    
                 }
             </ContentMusic>
@@ -96,6 +92,7 @@ const Title = styled.h1`
 `;
 
 const Welcome = styled.span`
+    display: ${props => props.logged ? "block" : "none"};
     color: white;
     font-size: 20px;
     margin-right: 20px;
@@ -124,10 +121,9 @@ const Artists = styled.h2`
 `;
 
 const ContentMusic = styled.div`
-    color: white
-    font-size: 2vw;
+    color: white;
     margin: auto;
-    padding: 80px 30px;
+    padding: 120px 30px;
     width: fit-content;
     height: 100%;
 
@@ -135,7 +131,7 @@ const ContentMusic = styled.div`
         display: flex;
         justify-content: space-between;
         max-width: 80%;
- 
+        padding: 80px 30px;
     }
 `;
 
