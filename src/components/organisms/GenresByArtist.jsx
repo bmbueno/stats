@@ -18,7 +18,7 @@ const GenresByArtist = (props) => {
         <>
             { haveGenre ? 
                 <>
-                    <h3 style={{color: '#1DB954'}}>Gêneros por artista</h3>
+                    <h3 style={{color: 'white'}}>Artistas:</h3>
                     { props.list.map((artist, id) => {
                         return <ArtistWithGenres artist={artist} key={id} />
                     }) }

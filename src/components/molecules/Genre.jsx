@@ -1,8 +1,11 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 
 const Genre = (props) => {
 
-    
+    useEffect(() => {
+        console.log(props.selected)
+    }, [props.selected])
     return (
         <Item selected={props.selected == props.name} key={props.name} onClick={props.onClick} >
             { props.selected == props.name ?
@@ -22,7 +25,12 @@ const Item = styled.li`
     border: 2px solid #1DB954;
     border-bottom: ${props => props.selected ? 'none' : "2px solid #1DB954"};
     width: auto;
-    cursor: pointer; 
+    cursor: pointer;
+
+    &:hover {
+        background-color: #1DB954;
+        transition: all 0.3s ease-out;
+    };
 `;
 
 const Name  = styled.a`

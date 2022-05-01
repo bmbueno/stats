@@ -15,7 +15,7 @@ const Genres = (props) => {
 
         let descriptions = await getDescriptions()
         setListDescription(descriptions)
-        //setSelected(props.list[0].name)
+        setSelected('')
         
     }, [props.list])
 
@@ -26,6 +26,7 @@ const Genres = (props) => {
     }, [selected])
     
     const handleClick = (e) => {
+        console.log(e.target.text)
         setSelected(e.target.text)
      }
 
