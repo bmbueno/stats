@@ -59,9 +59,12 @@ const Home = (props) => {
                             <Artists>{media.artists ? media.artists : waitTrack}</Artists>
                             {/* <MediaCharacteristics characteristics={media.characteristics} /> */}
                             <Divider />
-                            <GenresMusic list={media.genres} />
                             
-                            <GenresByArtist list={media.artistsGenres} />
+                                <GenresMusic list={media.genres} />
+                                <GenresByArtist list={media.artistsGenres} />
+                                 
+                            
+                            
                         </MusicInfo>
                     </>
                     :
@@ -78,6 +81,12 @@ const Home = (props) => {
 
 const Divider = styled.hr`
     width: 100%;
+`;
+
+const NotFound = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
 const Await = styled.div`
@@ -148,6 +157,10 @@ const Login = styled.div`
     display: flex;
     align-items: center;
     padding: 20px;
+
+    @media(min-width: 800px) {
+        position: absolute;
+    }
     `;
 
 export default Home

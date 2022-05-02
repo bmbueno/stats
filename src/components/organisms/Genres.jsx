@@ -49,10 +49,7 @@ const Genres = (props) => {
                 .then(response => {
                     var element = document.createElement("div")
                     element.innerHTML = response.data.tag.wiki.summary
-                    var text = element.innerText.replace("Read more on Last.fm.", "");
-                    if (text.trim() !== "") {
-                        text = element.innerText.slice(0, text.lastIndexOf(".")) + "."
-                    }
+                    var text = response.data.tag.wiki.summary.split("<a")[0]
                     //setDescription(text.trim()) 
                     return text.trim()
                 })
@@ -90,10 +87,9 @@ const List = styled.ul`
     margin: 0px ;
     padding: 0px;
     display: inline-flex;
-    overflow: scroll;
+    overflow: auto;
     max-width: calc(100vw - 60px);
     @media(min-width: 800px) {
-        overflow: hidden;
         display: flex;
         justify-content: start;
     }
@@ -109,6 +105,6 @@ const Description  = styled.div`
     list-style-type: none;
     max-height: ${props => props.open ? "100%" : "0"};
     overflow: hidden;
-    transition: all 0.7s ease-out;
+    transition: all 0.7s linear;
     margin-top: ${props => props.open ? '-10px' : '0px'};
 `;

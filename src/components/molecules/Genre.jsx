@@ -4,7 +4,6 @@ import styled from "styled-components";
 const Genre = (props) => {
 
     useEffect(() => {
-        console.log(props.selected)
     }, [props.selected])
     return (
         <Item selected={props.selected == props.name} key={props.name} onClick={props.onClick} >
