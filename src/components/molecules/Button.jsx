@@ -17,6 +17,7 @@ const ButtonStyled = styled.button`
     color: white;
     font: bold 18px Lato;
     height: fit-content;
+    cursor: pointer;
 `
 
 export default Button

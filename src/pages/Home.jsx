@@ -60,8 +60,8 @@ const Home = (props) => {
                             {/* <MediaCharacteristics characteristics={media.characteristics} /> */}
                             <Divider />
                             
-                                <GenresMusic list={media.genres} />
-                                <GenresByArtist list={media.artistsGenres} />
+                            <GenresMusic list={media.genres} />
+                            <GenresByArtist list={media.artistsGenres} />
                                  
                             
                             
